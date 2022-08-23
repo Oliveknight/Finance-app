@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+$red: #e0493d;
+$green: #2db5a7;
+$gray: #999;
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin porcentage($width) {
+  position: absolute;
+  width: $width;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  background-color: #ebebeb;
+}
+
+.cashflow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-image: linear-gradient($green, #4ed7a1);
+  height: 30vh;
+  &__amount {
+    position: relative;
+    font-size: 3rem;
+    margin: 0;
+    &::after {
+      content: "NET BALANCE";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+    }
+  }
+  &--box {
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(50%);
+    width: 45%;
+    height: 100px;
+    border-radius: 0.3rem;
+    background-color: #fff;
+    box-shadow: 0 0.5rem 1.5rem #00000025;
+    &:nth-of-type(1) {
+      left: 1rem;
+      color: $green;
+    }
+    &:nth-of-type(2) {
+      right: 1rem;
+      color: $red;
+    }
+  }
+}
+
+.income-state {
+  &__container {
+    @include center;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__amount {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  &__title {
+    color: $gray;
+    font-size: 0.7rem;
+    margin: 0;
+  }
+}
+
+main {
+  padding-top: 100px;
+  margin: 0 1rem;
+  margin-bottom: 50px;
+}
+
+.progress-bar {
+  display: grid;
+  grid-template-rows: repeat(3, 1rf);
+  width: 100%;
+  height: 100px;
+  border-radius: 0.3rem;
+  padding: 0.7rem;
+  background-color: #fff;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    color: $gray;
+    h3 {
+      margin: 0;
+    }
+  }
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .porcentage--income {
+      @include porcentage(87.83%);
+      border-radius: 0.3rem 0 0 0.3rem;
+      background-color: $green;
+    }
+    .porcentage--expense {
+      @include porcentage(12.17%);
+      right: 0;
+      border-radius: 0 0.3rem 0.3rem 0;
+      background-color: $red;
+    }
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    h3 {
+      margin: 0;
+      &:nth-child(1) {
+        color: $green;
+      }
+      &:nth-child(2) {
+        color: $red;
+      }
+    }
+  }
+}
+
+.movements {
+  margin-top: 50px;
+  width: 100%;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  &__item {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 0.5rem;
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ededed;
+    &__content {
+      padding-left: 2rem;
+    }
+    &__title {
+      color: #000;
+      margin-bottom: 0;
+    }
+    &__type {
+      color: $gray;
+      margin-top: 0;
+    }
+    &__icon {
+      @include center;
+      border-radius: 100%;
+      height: 50%;
+      align-self: center;
+    }
+    &__amount {
+      @include center;
+    }
+  }
+}
+
+.amount {
+  &--red {
+    color: $red;
+  }
+  &--green {
+    color: $green;
+  }
+}
+
+.icon {
+  &--orange {
+    background-color: #f1963d;
+  }
+  &--green {
+    background-color: $green;
+  }
+}
